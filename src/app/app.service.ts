@@ -7,20 +7,15 @@ import { HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AppService {
-  api = 'http://localhost:8000/api';
-  username: string;
+  private api = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient) {}
 
   // Returns all members
-  getMembers() {
+  public getMembers() {
     return this.http
       .get(`${this.api}/members`)
       .pipe(catchError(this.handleError));
-  }
-
-  setUsername(name: string): void {
-    this.username = name;
   }
 
   addMember(memberForm) {}

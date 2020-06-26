@@ -2,10 +2,10 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
-var hsts = require('hsts');
+const hsts = require('hsts');
 const path = require('path');
-var xssFilter = require('x-xss-protection');
-var nosniff = require('dont-sniff-mimetype');
+const xssFilter = require('x-xss-protection');
+const nosniff = require('dont-sniff-mimetype');
 const request = require('request');
 
 const app = express();
@@ -35,7 +35,7 @@ app.use(
   })
 );
 
-app.get('/api/members', (req, res) => {
+app.get('/api/members', checkHeaders, (req, res) => {
   request('http://localhost:3000/members', (err, response, body) => {
     if (response.statusCode <= 500) {
       res.send(body);
@@ -44,12 +44,12 @@ app.get('/api/members', (req, res) => {
 });
 
 // TODO: Dropdown!
-app.get('/api/teams', (req, res) => {
+app.get('/api/teams', checkHeaders, (req, res) => {
 
 });
 
 // Submit Form!
-app.post('/api/addMember', (req, res) => {
+app.post('/api/addMember', checkHeaders, (req, res) => {
 
 });
 
@@ -60,3 +60,15 @@ app.get('*', (req, res) => {
 app.listen('8000', () => {
   console.log('Vrrrum Vrrrum! Server starting!');
 });
+
+
+
+function checkHeaders(req, res, next) {
+  console.log('testing this: ', req.headers['x-username'])
+  // I understand 418 is not the appropriate status, but it's funny :D
+  if (!req.headers['x-username']) {
+    res.status(418).send('You are not logged in.')
+  } else {
+    next()
+  }
+}

@@ -1,8 +1,19 @@
 <div class="container-fluid">
-  <button id="addMemberButton" class="btn btn-primary pull-right" (click)="goToAddMemberForm()">Add Member</button>
+  <div class="add-member" [ngClass]="addMemberState ? 'red' : 'blue'" (click)="toggleAdd()">
+    <i *ngIf="!addMemberState" class="fas fa-plus"></i>
+    <i *ngIf="addMemberState" class="fas fa-times"></i>
+    <div>
+      <span *ngIf="!addMemberState">Add Member</span>
+      <span *ngIf="addMemberState">Cancel</span>
+    </div>
+  </div>
+  <div class="container-fluid" *ngFor="let member of members">
+    <app-table-row></app-table-row>
+  </div>
   <table class="table">
     <thead>
       <tr>
+        <th></th>
         <th>Member ID</th>
         <th>First Name</th>
         <th>Last Name</th>
@@ -13,6 +24,7 @@
     </thead>
     <tbody>
       <tr *ngFor='let member of members'>
+        <td style="width: 45px;"><i class="fas fa-edit"></i></td>
         <td>{{member?.id}}</td>
         <td>{{member?.firstName}}</td>
         <td>{{member?.lastName}}</td>

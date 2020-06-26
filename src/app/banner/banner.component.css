@@ -7,9 +7,17 @@
 
 .logout {
   cursor: pointer;
-  text-transform: lowercase;
+  padding: 0;
+  margin: 0;
 }
 
 .welcome {
   text-transform: capitalize;
+  padding: 0;
+  margin: 0;
+}
+
+.top {
+  position: absolute;
+  top: 10px;
 }

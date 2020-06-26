@@ -1,5 +1,18 @@
-#addMemberButton {
-  margin-bottom: 10px;
+.add-member {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 115px;
 }
 
+.blue {
+  color: blue;
+}
 
+.red {
+  color: red;
+}
+
+.fas {
+  margin-right: 5px;
+}

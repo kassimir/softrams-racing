@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./members.component.css']
 })
 export class MembersComponent implements OnInit {
+  public addMemberState = false;
   members = [];
 
   constructor(public appService: AppService, private router: Router) {}
@@ -16,11 +17,7 @@ export class MembersComponent implements OnInit {
     this.appService.getMembers().subscribe(members => (this.members = members));
   }
 
-  goToAddMemberForm() {
-    console.log(`Hmmm...we didn't navigate anywhere`);
+  public toggleAdd(): void {
+    this.addMemberState = !this.addMemberState;
   }
-
-  editMemberByID(id: number) {}
-
-  deleteMemberById(id: number) {}
 }

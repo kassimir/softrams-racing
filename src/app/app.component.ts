@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from './app.service';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +9,7 @@ import { AppService } from './app.service';
 export class AppComponent implements OnInit {
   title = 'softrams-racing';
 
-  constructor(private appService: AppService) {
-  }
+  constructor(private auth: AuthService) {}
 
-  ngOnInit(): void {
-    if (!this.appService.username || this.appService.username.length < 1) {
-      this.appService.setUsername(localStorage.getItem('username'));
-    }
-  }
+  ngOnInit(): void {}
 }
