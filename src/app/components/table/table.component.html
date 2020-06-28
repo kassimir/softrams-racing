@@ -1,0 +1,55 @@
+<!--<table class="table">-->
+  <!--<thead>-->
+  <!--<th (click)="addMember()" style="cursor: pointer;">-->
+    <!--<i [@addMemToggle]="adding ? 'adding' : 'notAdding'" class="fas fa-plus"></i>-->
+  <!--</th>-->
+  <!--<th *ngFor="let header of headers">-->
+    <!--<span>{{header}}</span>-->
+  <!--</th>-->
+  <!--</thead>-->
+<!--</table>-->
+<!--<div style="overflow: auto;">-->
+  <!--<table class="table">-->
+    <!--<tbody>-->
+    <!--<tr [@enterLeave]="adding ? ':enter' : ':leave'" *ngFor="let member of members; let i = index;">-->
+      <!--<td>-->
+        <!--<div [@editing]="editing[i] ? 'enabled' : 'disabled'" style="color: blue; cursor: pointer;">-->
+          <!--<i class="fas fa-edit" (click)="editMember(i)" (load)="editing[i]=false"></i>-->
+        <!--</div>-->
+        <!--<div [@editing]="editing[i] ? 'disabled' : 'enabled'" style="color: green; cursor: pointer;">-->
+          <!--<i class="fas fa-save" (click)="editMember(i)" (load)="editing[i]=false"></i>-->
+        <!--</div>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<input [disabled]="!editing[i]" value="{{member?.id}}" placeholder="ID"/>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<input [disabled]="!editing[i]" value="{{member?.firstName}}" placeholder="First Name"/>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<input [disabled]="!editing[i]" value="{{member?.lastName}}" placeholder="Last Name"/>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<input [disabled]="!editing[i]" value="{{member?.jobTitle}}" placeholder="Job Title"/>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<input [disabled]="!editing[i]" value="{{member?.team}}" placeholder="Team"/>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<input [disabled]="!editing[i]" value="{{member?.status}}" placeholder="Status"/>-->
+      <!--</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+  <!--</table>-->
+<!--</div>-->
+<table class="table">
+  <thead>
+    <th (click)="addMember()" style="cursor: pointer;">
+    <i [@addMemToggle]="adding ? 'adding' : 'notAdding'" class="fas fa-plus"></i>
+    </th>
+    <th *ngFor="let header of headers">{{ header }}</th>
+  </thead>
+  <tbody>
+    <tr [@enterLeave]="" *ngFor="let member of members" table-row [member]="member"></tr>
+  </tbody>
+</table>

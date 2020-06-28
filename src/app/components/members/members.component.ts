@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../app.service';
+import { AppService } from '../../app.service';
 import { Router } from '@angular/router';
+import { Member } from '../../models/member';
 
 @Component({
   selector: 'app-members',
@@ -9,12 +10,11 @@ import { Router } from '@angular/router';
 })
 export class MembersComponent implements OnInit {
   public addMemberState = false;
-  members = [];
+  public members: Member[] = [];
 
   constructor(public appService: AppService, private router: Router) {}
 
   ngOnInit() {
-    this.appService.getMembers().subscribe(members => (this.members = members));
   }
 
   public toggleAdd(): void {

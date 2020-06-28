@@ -1,3 +1,29 @@
-<div class="row">
-
-</div>
+<!--<tr [@enterLeave]="adding ? ':enter' : ':leave'" *ngFor="let member of members;">-->
+  <td>
+  <div [@editing]="editing ? 'enabled' : 'disabled'" style="color: blue; cursor: pointer;">
+  <i class="fas fa-edit" (click)="editMember()" (load)="editing=false"></i>
+  </div>
+  <div [@editing]="editing ? 'disabled' : 'enabled'" style="cursor: pointer;">
+    <i class="fas fa-trash" (click)="editMember()" (load)="editing=false" style="color: red;"></i>
+    <i class="fas fa-save" (click)="editMember()" (load)="editing=false" style="color: green; margin-left: 12px;"></i>
+  </div>
+  </td>
+  <td>
+  <input [disabled]="!editing" [(ngModel)]="member.id" placeholder="ID"/>
+  </td>
+  <td>
+  <input [disabled]="!editing" [(ngModel)]="member.firstName" placeholder="First Name"/>
+  </td>
+  <td>
+  <input [disabled]="!editing" [(ngModel)]="member.lastName" placeholder="Last Name"/>
+  </td>
+  <td>
+  <input [disabled]="!editing" [(ngModel)]="member.jobTitle" placeholder="Job Title"/>
+  </td>
+  <td>
+  <input [disabled]="!editing" [(ngModel)]="member.team" placeholder="Team"/>
+  </td>
+  <td>
+  <input [disabled]="!editing" [(ngModel)]="member.status" placeholder="Status"/>
+  </td>
+<!--</tr>-->

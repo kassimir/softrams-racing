@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <p *ngIf="auth.getUser()" class="welcome">Welcome, {{ auth.getUser() }}!</p>
-        <p (click)="logout()" class="logout text-primary">Logout</p>
+        <p *ngIf="auth.getUser()" (click)="logout()" class="logout text-primary">Logout</p>
       </div>
     </div>
   </div>

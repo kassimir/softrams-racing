@@ -1,0 +1,13 @@
+th:first-of-type {
+  width: 65px;
+}
+
+input:disabled {
+  border: 2px solid white;
+  outline: none;
+  background-color: white;
+}
+
+input:enabled {
+  border: 2px solid green;
+}

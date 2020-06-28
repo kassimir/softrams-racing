@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 
 import { AppService } from './app.service';
@@ -12,10 +13,10 @@ import { AuthService } from './auth/auth.service';
 
 import { AppComponent } from './app.component';
 import { BannerComponent } from './banner/banner.component';
-import { MemberDetailsComponent } from './member-details/member-details.component';
-import { MembersComponent } from './members/members.component';
+import { MembersComponent } from './components/members/members.component';
 import { LoginComponent } from './components/login/login.component';
-import {Interceptor} from './auth/http.interceptor';
+import { Interceptor } from './auth/http.interceptor';
+import { TableComponent } from './components/table/table.component';
 import { TableRowComponent } from './components/table-row/table-row.component';
 
 const ROUTES = [
@@ -35,14 +36,14 @@ const ROUTES = [
   }
 ];
 
-// Notice how both FormsModule and ReactiveFormsModule imported...choices, choices!
 @NgModule({
-  declarations: [AppComponent, BannerComponent, MemberDetailsComponent, MembersComponent, LoginComponent, TableRowComponent],
+  declarations: [AppComponent, BannerComponent, MembersComponent, LoginComponent, TableComponent, TableRowComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES, { useHash: true }),
-    ReactiveFormsModule,
+    RouterModule.forRoot(ROUTES, { useHash: false }),
+    BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [
