@@ -1,29 +1,38 @@
-<!--<tr [@enterLeave]="adding ? ':enter' : ':leave'" *ngFor="let member of members;">-->
-  <td>
-  <div [@editing]="editing ? 'enabled' : 'disabled'" style="color: blue; cursor: pointer;">
-  <i class="fas fa-edit" (click)="editMember()" (load)="editing=false"></i>
-  </div>
-  <div [@editing]="editing ? 'disabled' : 'enabled'" style="cursor: pointer;">
-    <i class="fas fa-trash" (click)="editMember()" (load)="editing=false" style="color: red;"></i>
-    <i class="fas fa-save" (click)="editMember()" (load)="editing=false" style="color: green; margin-left: 12px;"></i>
-  </div>
+  <td style="overflow: hidden;">
+    <app-edit
+      (editRow)="editRow($event)"
+      (saveRow)="saveRow($event)"
+      (deleteRow)="deleteRow($event)"
+    ></app-edit>
   </td>
   <td>
-  <input [disabled]="!editing" [(ngModel)]="member.id" placeholder="ID"/>
+    <input [disabled]="!(editService.addingMember | async)" *ngIf="!!member" [(ngModel)]="member.id" placeholder="Member ID"/>
+    <p *ngIf="editService.addingMember | async">(Automatically assigned if left empty)</p>
+    <p *ngIf="editing && !(editService.addingMember | async)">(This cannot be changed)</p>
   </td>
   <td>
-  <input [disabled]="!editing" [(ngModel)]="member.firstName" placeholder="First Name"/>
+    <input [disabled]="!editing" *ngIf="!!member" [(ngModel)]="member.firstName" placeholder="First Name"/>
+    <p *ngIf="editing">(Name must contain only letters and be at least 2 characters)</p>
   </td>
   <td>
-  <input [disabled]="!editing" [(ngModel)]="member.lastName" placeholder="Last Name"/>
+    <input [disabled]="!editing" *ngIf="!!member" [(ngModel)]="member.lastName" placeholder="Last Name"/>
+    <p *ngIf="editing">(Name must contain only letters and be at least 2 characters)</p>
   </td>
   <td>
-  <input [disabled]="!editing" [(ngModel)]="member.jobTitle" placeholder="Job Title"/>
+    <input [disabled]="!editing" *ngIf="!!member" [(ngModel)]="member.jobTitle" placeholder="Job Title"/>
+    <p *ngIf="editing">(Name must contain only letters and be at least 2 characters)</p>
   </td>
   <td>
-  <input [disabled]="!editing" [(ngModel)]="member.team" placeholder="Team"/>
+    <select name="team" [disabled]="!editing" *ngIf="!!member" [(ngModel)]="member.team">
+      <option value="">Select A Team . . .</option>
+      <option *ngFor="let team of teams"
+        [ngValue]="team.teamName"
+      >{{team.teamName}}</option>
+    </select>
   </td>
   <td>
-  <input [disabled]="!editing" [(ngModel)]="member.status" placeholder="Status"/>
+    <select name="status" [disabled]="!editing" *ngIf="!!member" [(ngModel)]="member.status">
+      <option [ngValue]="'Active'">Active</option>
+      <option [ngValue]="'Inactive'">Inactive</option>
+    </select>
   </td>
-<!--</tr>-->

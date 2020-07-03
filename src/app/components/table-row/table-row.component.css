@@ -1,0 +1,21 @@
+td {
+  overflow: hidden;
+}
+
+p {
+  margin: 0;
+  font-size: 11px;
+}
+
+select, input {
+  padding-left: 5px;
+  width: 200px;
+}
+
+select:disabled, input:disabled {
+  border: 1px solid white;
+  outline: none;
+  background-color: white;
+  appearance: none;
+  color: black;
+}

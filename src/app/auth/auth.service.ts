@@ -1,32 +1,37 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class AuthService {
-    private _user: string;
+  private _user: string;
 
-    constructor() {}
+  constructor(private router: Router) {
+  }
 
-    public setUser(user: string, cache: boolean) {
-        this._user = user;
+  public setUser(user: string, cache: boolean) {
+    this._user = user;
 
-        // Cache is true, if the Remember Me was checked at login
-        if (cache) {
-            localStorage.setItem('username', user);
-        }
+    // Cache is true, if the Remember Me was checked at login
+    if (cache) {
+      localStorage.setItem('username', user);
+    }
+  }
+
+  public getUser(): string {
+    // If no user is currently stored in the app, check local storage then set it
+    if (!this._user && localStorage.getItem('username')) {
+      this._user = localStorage.getItem('username');
     }
 
-    public getUser(): string {
-        // If no user is currently stored in the app, check local storage then set it
-        if (!this._user && localStorage.getItem('username')) {
-            this._user = localStorage.getItem('username');
-        }
+    return this._user;
+  }
 
-        return this._user;
-    }
-
-    public killUser(): void {
-        this._user = null;
-    }
+  // Remove user from memory and storage
+  public killUser(): void {
+    this._user = null;
+    localStorage.removeItem('username');
+    this.router.navigate(['/login'])
+  }
 }

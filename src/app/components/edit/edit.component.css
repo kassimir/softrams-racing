@@ -1,0 +1,21 @@
+.fas {
+  cursor: pointer;
+}
+
+.fa-edit {
+  color: blue;
+}
+
+.fa-save {
+  color: green;
+}
+
+.fa-save:disabled {
+  color: grey;
+}
+
+.fa-trash {
+  color: red;
+  margin-right: 12px;
+}
+

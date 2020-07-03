@@ -8,15 +8,17 @@ import { EMPTY, Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class Interceptor implements HttpInterceptor {
+    private api = 'http://localhost:8000/api';
 
     constructor(private auth: AuthService, private router: Router) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (this.auth.getUser()) {
             request = request.clone({
-               setHeaders: {
-                   'x-username': this.auth.getUser()
-               }
+                url: `${this.api}/${request.url}`,
+                setHeaders: {
+                    'x-username': this.auth.getUser()
+                }
             });
             return next.handle(request);
         } else {

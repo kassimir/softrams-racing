@@ -10,9 +10,13 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  // Login form
   public loginForm: FormGroup;
+  // Variable for Remember Me checkbox
   public rememberMe = false;
+  // Keeps track of what input is focused
   public focusedInput: 'username' | 'password' = 'username';
+  // Sets validation
   public validationChecks = {
     sixChars: false,
     lettersNumbers: false,
@@ -32,6 +36,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/members']);
     }
 
+    // Create the Reactive form
     this.loginForm = this.fb.group({
       // Username must be at least 6 characters long and contain only letters and numbers. And underscore, for some reason.
       username: new FormControl('', this.getValidators(/[\w]{6,}/)),
@@ -45,6 +50,9 @@ export class LoginComponent implements OnInit {
     this.focusedInput = val;
   }
 
+  // I have never been a fan of Angular's Validators. Showing an error while someone is typing is poor UI, but
+  // waiting until they're done (update: onBlur) doesn't highlight the submit button appropriately, so I just
+  // validate my own way instead to allow all things to work when I want them to. Plus it allows for snazzier UI
   public validate(): void {
     this.validationChecks = {
       sixChars: this.loginForm.get('username').value.length >= 5,
@@ -57,8 +65,8 @@ export class LoginComponent implements OnInit {
     };
   }
 
-  public setRemember(e: boolean): void {
-    this.rememberMe = e;
+  public setRemember(remember: boolean): void {
+    this.rememberMe = remember;
   }
 
   public login(): void {
@@ -66,6 +74,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/members']);
   }
 
+  // Promote a little dryness
   private getValidators(pattern: RegExp) {
     return [Validators.required, Validators.pattern(pattern)];
   }

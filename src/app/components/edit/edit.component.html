@@ -1,0 +1,7 @@
+<div [@editButton]="editing ? 'edit' : 'noedit'">
+  <i *ngIf="!adding && !editing" class="fas fa-edit" (click)="editMember()" (load)="editing=false"></i>
+</div>
+<div [@updateDiv]="editing ? 'noupdate' : 'update'">
+  <i *ngIf="!adding" class="fas fa-trash" (click)="deleteMember()" (load)="editing=false"></i>
+  <i class="fas fa-save" (click)="saveMember()" (load)="editing=false"></i>
+</div>

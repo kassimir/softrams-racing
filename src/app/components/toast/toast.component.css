@@ -1,0 +1,31 @@
+.toasty {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 55px;
+  z-index: 99;
+  text-align: center;
+  font-size: 33px;
+  color: white;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.success {
+  background: green;
+}
+
+.neutral {
+  background: orange;
+}
+
+.error {
+  background: red;
+}
